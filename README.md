@@ -46,6 +46,7 @@ You can also use environment variables prefixed with `WATCHHTML_` in place of fl
 * `--storedir string` / `WATCHHTML_STOREDIR`: Directory for storing HTML snapshots. By default, this is the current directory (`"./"`).
 * `--url string` / `WATCHHTML_URL`: URL of the webpage to track for changes.
 * `--xpath string` / `WATCHHTML_XPATH`: XPath of the HTML elements to track on the webpage.
+* `--extramessage string` / `WATCHHTML_EXTRAMESSAGE`: extra message content. e.g mention user
 
 **Note**: The `--version` and `--help` flags do not have corresponding environment variables.
 

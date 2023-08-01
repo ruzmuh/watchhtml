@@ -13,6 +13,7 @@ const (
 	xpathFlagName        = "xpath"
 	storeDirFlagName     = "storedir"
 	slackWebhookFlagName = "slackwebhook"
+	extramessageFlagName = "extramessage"
 )
 
 var (
@@ -31,12 +32,14 @@ func init() {
 	flag.String(xpathFlagName, "", "xpath")
 	flag.String(storeDirFlagName, "./", "filestore dir to keep the changes")
 	flag.String(slackWebhookFlagName, "", "slack webhook url")
+	flag.String(extramessageFlagName, "", "extra message content. e.g mention user")
 	flag.Parse()
 
 	viper.BindPFlag(urlFlagName, flag.Lookup(urlFlagName))
 	viper.BindPFlag(xpathFlagName, flag.Lookup(xpathFlagName))
 	viper.BindPFlag(storeDirFlagName, flag.Lookup(storeDirFlagName))
 	viper.BindPFlag(slackWebhookFlagName, flag.Lookup(slackWebhookFlagName))
+	viper.BindPFlag(extramessageFlagName, flag.Lookup(extramessageFlagName))
 	viper.SetEnvPrefix("watchhtml")
 	viper.AutomaticEnv()
 }

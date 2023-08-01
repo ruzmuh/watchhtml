@@ -47,7 +47,10 @@ func main() {
 	storedValue, err := store.GetValue(key)
 	if err != nil {
 		log.Printf("there is no a stored value: %s", err)
-		err = webhookCall(fmt.Sprintf("there is no a stored value for url=%s", url), slackWebhookUrl)
+		err = webhookCall(fmt.Sprintf("there is no a stored value for url=%s\n%s",
+			url,
+			viper.GetString(extramessageFlagName),
+		), slackWebhookUrl)
 		if err != nil {
 			log.Fatalf("couldn't post message to slack. exit: %s", err.Error())
 		}
@@ -58,7 +61,12 @@ func main() {
 		os.Exit(0)
 	}
 	if storedValue != currentValue {
-		err = webhookCall(fmt.Sprintf("values aren't equal\n stored=  %s\n current= %s", storedValue, currentValue), slackWebhookUrl)
+		err = webhookCall(fmt.Sprintf("url=%s is updated:\n stored=  %s\n current= %s\n%s",
+			viper.GetString(urlFlagName),
+			storedValue,
+			currentValue,
+			viper.GetString(extramessageFlagName),
+		), slackWebhookUrl)
 		if err != nil {
 			log.Fatalf("couldn't post message to slack. exit: %s", err.Error())
 		}
