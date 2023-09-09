@@ -15,19 +15,19 @@ func Test_queryPath(t *testing.T) {
 	}{
 		{
 			name:       "query_positive_1",
-			args:       args{url: "https://readthedocs.org/", xpath: "//section//h2"},
-			wantResult: "Technical documentation lives here",
+			args:       args{url: "https://example.com/", xpath: "//div//h1"},
+			wantResult: "Example Domain",
 			wantErr:    false,
 		},
 		{
 			name:       "query_negative_1",
-			args:       args{url: "https://readthedocs.org/", xpath: "//section//tr"},
+			args:       args{url: "https://example.com/", xpath: "//div//h2"},
 			wantResult: "",
 			wantErr:    true,
 		},
 		{
 			name:       "query_negative_2",
-			args:       args{url: "https://readthedocs.or/", xpath: "//section//h2"},
+			args:       args{url: "https://example.co/", xpath: "//div//h1"},
 			wantResult: "",
 			wantErr:    true,
 		},

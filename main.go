@@ -4,6 +4,7 @@ import (
 	"bytes"
 	"crypto/md5"
 	"encoding/hex"
+	"encoding/json"
 	"fmt"
 	"log"
 	"net/http"
@@ -96,7 +97,17 @@ func queryPath(url string, xpath string) (result string, err error) {
 
 func postToSlack(message string, url string) (err error) {
 	log.Printf("POSTING TO SLACK: %s", message)
-	data := []byte(fmt.Sprintf(`{"text": "%s"}`, message))
+
+	payload := struct {
+		Text string `json:"text"`
+	}{
+		Text: message,
+	}
+
+	data, err := json.Marshal(payload)
+	if err != nil {
+		return err
+	}
 
 	req, err := http.NewRequest("POST", url, bytes.NewBuffer(data))
 	if err != nil {

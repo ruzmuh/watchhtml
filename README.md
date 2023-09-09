@@ -10,6 +10,15 @@ These instructions will guide you through getting a copy of the project and runn
 
 You will need Go installed on your machine. For instructions on how to install Go, please refer to the [official Go documentation](https://golang.org/doc/install).
 
+### Using Docker
+
+If you'd prefer not to install Go and run the application directly, you can use the provided Docker image:
+
+```
+docker pull ruzmuh/watchhtml
+```
+Once the image is pulled, you can run the tool using Docker. Remember to provide necessary environment variables/flags and mount the state store.
+
 ### Installation
 
 1. Clone the repository into your workspace:
